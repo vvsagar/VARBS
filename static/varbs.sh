@@ -1,13 +1,14 @@
 #!/bin/sh
 
-# Luke's Auto Rice Bootstrapping Script (LARBS)
-# by Luke Smith <luke@lukesmith.xyz>
+# Vidya's Auto Rice Bootstrapping Script (VARBS)
+# by Vidya Sagar VOBBILISETTI <mail@vidyasagarv.com>
+# based on LARBS by Luke Smith <luke@lukesmith.xyz>
 # License: GNU GPLv3
 
 ### OPTIONS AND VARIABLES ###
 
-dotfilesrepo="https://github.com/lukesmithxyz/voidrice.git"
-progsfile="https://raw.githubusercontent.com/LukeSmithxyz/LARBS/master/static/progs.csv"
+dotfilesrepo="https://github.com/vvsagar/dotfiles.git"
+progsfile="https://raw.githubusercontent.com/vvsagar/VARBS/master/static/progs.csv"
 aurhelper="yay"
 repobranch="master"
 export TERM=ansi
@@ -21,7 +22,8 @@ https://landchad.net/rss.xml
 https://based.cooking/index.xml
 https://artixlinux.org/feed.php \"tech\"
 https://www.archlinux.org/feeds/news/ \"tech\"
-https://github.com/LukeSmithxyz/voidrice/commits/master.atom \"~LARBS dotfiles\""
+https://github.com/LukeSmithxyz/voidrice/commits/master.atom \"~LARBS dotfiles\"
+https://github.com/LukeSmithxyz/LARBS/commits/master.atom \"~LARBS install scripts\""
 
 ### FUNCTIONS ###
 
