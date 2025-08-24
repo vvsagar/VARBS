@@ -8,7 +8,7 @@
 ### OPTIONS AND VARIABLES ###
 
 dotfilesrepo="https://github.com/vvsagar/dotfiles.git"
-progsfile="https://raw.githubusercontent.com/vvsagar/VARBS/master/static/progs.csv"
+progsfile="https://raw.githubusercontent.com/vvsagar/VARBS/master/progs.csv"
 aurhelper="yay"
 repobranch="master"
 export TERM=ansi
