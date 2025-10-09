@@ -286,7 +286,7 @@ installationloop
 putgitrepo "$dotfilesrepo" "/home/$name" "$repobranch"
 # Remove unnecessary files.
 rm -rf "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
-git update-index --assume-unchanged "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
+git update-index --assume-unchanged "/home/$name/README.md" "/home/$name/LICENSE"
 mv "/home/$name/.git" "/home/$name/.dotfiles"
 
 # Write urls for newsboat if it doesn't already exist
