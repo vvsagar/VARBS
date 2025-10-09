@@ -204,14 +204,12 @@ vimplugininstall() {
 }
 
 makeuserjs(){
-	# Get the Arkenfox user.js and prepare it.
-	arkenfox="$pdir/arkenfox.js"
-	overrides="$pdir/user-overrides.js"
 	userjs="$pdir/user.js"
-	ln -fs "/home/$name/.config/firefox/larbs.js" "$overrides"
-	[ ! -f "$arkenfox" ] && curl -sL "https://raw.githubusercontent.com/arkenfox/user.js/master/user.js" > "$arkenfox"
-	cat "$arkenfox" "$overrides" > "$userjs"
-	chown "$name:wheel" "$arkenfox" "$userjs"
+	cat "/home/$name/.config/firefox/user.js" > "$userjs"
+	mkdir "$pdir/chrome"
+	usercss="$pdir/chrome/userChrome.css"
+	cat "/home/$name/.config/firefox/userChrome.css" > "$usercss"
+	chown "$name:wheel" "$userjs" "$usercss"
 }
 
 finalize() {
@@ -328,23 +326,23 @@ dbus-uuidgen >/var/lib/dbus/machine-id
 	Option "Tapping" "on"
 EndSection' >/etc/X11/xorg.conf.d/40-libinput.conf
 
-# All this below to get Librewolf installed with add-ons and non-bad settings.
+# All this below to get firefox installed with add-ons and non-bad settings.
 
 whiptail --infobox "Setting browser privacy settings and add-ons..." 7 60
 
-browserdir="/home/$name/.librewolf"
+browserdir="/home/$name/.mozilla/firefox"
 profilesini="$browserdir/profiles.ini"
 
-# Start librewolf headless so it generates a profile. Then get that profile in a variable.
-sudo -u "$name" librewolf --headless >/dev/null 2>&1 &
+# Start firefox headless so it generates a profile. Then get that profile in a variable.
+sudo -u "$name" firefox --headless >/dev/null 2>&1 &
 sleep 1
-profile="$(sed -n "/Default=.*.default-default/ s/.*=//p" "$profilesini")"
+profile="$(sed -n "/Default=.*.default-release/ s/.*=//p" "$profilesini")"
 pdir="$browserdir/$profile"
 
 [ -d "$pdir" ] && makeuserjs
 
-# Kill the now unnecessary librewolf instance.
-pkill -u "$name" librewolf
+# Kill the now unnecessary firefox instance.
+pkill -u "$name" firefox
 
 # Allow wheel users to sudo with password and allow several system commands
 # (like `shutdown` to run without password).
